@@ -90,8 +90,8 @@ class Registration
     {
         getLogger()->debug('SENDING EMAIL;');
 
-        $from = "confirmation@osl";
-        $reply = 'no-reply@osl';
+        $from = "confirmation@osl.vvce.ac.in";
+        $reply = 'no-reply@sl.vvce.ac.in';
 
         $subject = "OSL Open Source Day: Confirmation";
 
