@@ -65,12 +65,21 @@ try {
             echo $twig->render('osd-reg.twig', $val);
         } else {
             getLogger()->debug('NO ERROR REDIRECTING');
-            EasyHeaders::redirect('/osd/confirm');
+            if ($package === 'package-1') {
+                EasyHeaders::redirect('/osd/confirm/package1');
+            } else {
+                EasyHeaders::redirect('/osd/confirm/package2');
+            }
+
         }
     });
 
-    $route->addMatch('GET', '/osd/confirm', function () {
+    $route->addMatch('GET', '/osd/confirm/package1', function () {
+        EasyHeaders::redirect('');
+    });
 
+    $route->addMatch('GET', '/osd/confirm/package2', function () {
+        EasyHeaders::redirect('');
     });
 
     $route->execute();
