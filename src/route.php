@@ -5,6 +5,7 @@ require_once __DIR__ . '/logger.php';
 use EasyRoute\Route;
 use PhpUseful\EasyHeaders;
 use PhpUseful\Functions;
+use PhpUseful\MySQLHelper;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -81,6 +82,35 @@ try {
 
     $route->addMatch('GET', '/osd/confirm/package2', function () {
         EasyHeaders::redirect('https://osl224440.typeform.com/to/cCtdeK');
+    });
+
+    $route->addMatch('GET', '/url/sql2csv', function () {
+        $helper = new MySQLHelper(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
+        $mysqli =  $helper->getConn();
+        $query = "SELECT * FROM OSD_REGISTRATIONS";
+        $result = $mysqli->query($query);
+        if (!$result) {
+            die('Couldn\'t fetch records');
+        }
+        $num_fields = $result->num_rows;
+        $headers = array();
+
+        while ($fieldinfo = mysqli_fetch_field($result)) {
+            $headers[] = $fieldinfo->name;
+        }
+        $fp = fopen('php://output', 'w');
+        if ($fp && $result) {
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename="export.csv"');
+            header('Pragma: no-cache');
+            header('Expires: 0');
+            fputcsv($fp, $headers);
+            while ($row = $result->fetch_array(MYSQLI_NUM)) {
+                fputcsv($fp, array_values($row));
+            }
+            die;
+        }
+
     });
 
     $route->execute();
