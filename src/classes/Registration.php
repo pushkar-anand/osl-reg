@@ -1,6 +1,7 @@
 <?php
 
 use EasyMail\Mail;
+use PhpUseful\EasyHeaders;
 use PhpUseful\MySQLHelper;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
@@ -23,8 +24,18 @@ class Registration
     private $phone;
     private $package;
 
+
+    /**
+     * Registration constructor.
+     * @param string $name
+     * @param string $email
+     * @param string $phone
+     * @param string $package
+     * @throws Exception
+     */
     public function __construct(string $name, string $email, string $phone, string $package)
     {
+        global $logger;
         try {
             $this->helper =
                 new MySQLHelper(DB_SERVER, DB_NAME, DB_PASSWORD, DB_USER);
@@ -35,9 +46,31 @@ class Registration
             $this->package = $package;
 
         } catch (Exception $exception) {
-
+            $logger->critical('DATABASE ERROR: ' . $exception->getMessage());
+            EasyHeaders::service_unavailable();
         }
 
+        if (!$this->isEmailValid($email)) {
+            throw new Exception("Email address is not valid.");
+        }
+
+        if ($this->userExists($email)) {
+            throw new Exception("Email is already registered.");
+        }
+
+
+    }
+
+    private function isEmailValid(string $input): bool
+    {
+        return filter_var($input, FILTER_VALIDATE_EMAIL) !== false;
+    }
+
+    private function userExists(string $email): bool
+    {
+        $count =
+            $this->helper->getResultCount(self::TABLE_NAME, self::COL_EMAIL, $email);
+        return ($count > 0);
     }
 
     public function saveDetails()
