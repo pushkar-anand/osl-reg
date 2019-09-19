@@ -1,3 +1,47 @@
-.package {
-    border: #000000 2px solid;
+
+
+body{
+    background-color: #000e34;
 }
+
+
+.package {
+    border: #000000 3px solid;
+    border-radius: 5%;
+    height: 30vh !important;
+    /*background-color: #000e34;*/
+
+}
+
+.package:hover {
+    cursor: pointer;
+}
+
+.card{
+    border-radius: 2%;
+}
+.card .card-content .card-title{
+    margin-top: 10%;
+    font-size: 35px;
+    font-weight: bold;
+}
+.input-field{
+
+    margin-top: 10%;
+    /*!**!border-bottom: 1px solid #000000;*/
+}
+
+.collection{
+    border: none;
+}
+.collection .collection-item{
+    border: none;
+    /*background-color: #dd4444;*/
+}
+
+.selected, .selected.collection.collection-item{
+    background-color: #000e34 ;
+    color: #ffffff;
+}
+
+.ackage-header

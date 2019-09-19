@@ -12,11 +12,11 @@
             <div class="row">
                 <div class="col s12 m2"></div>
                 <div class="col s12 m8 ">
-                    <form class="form" method="post" id="signup-form" action="/osd/registration">
+                    <form class="form" method="post" id="signup-form" action="/osd/registration" onsubmit="return checkForm();">
                         <div class="card">
                             <div class="card-content">
 
-                                <span class="card-title">Register for OSD</span>
+                               <center> <span class="card-title">OPEN SOURCE DAY</span></center>
 
                                 <div class="input-field">
                                     <input type="text" name="name" required
@@ -36,7 +36,7 @@
                                            class="validate {% if error.email %} {{ "invalid" }} {% endif %}"
                                            autocomplete="email"
                                            id="email" value="{% if email %} {{ email }} {% endif %}"/>
-                                    <label for="name">Email</label>
+                                    <label for="email">Email</label>
                                     {% if error.email %}
                                         <span class="helper-text" data-error="{{ error.email }}"></span>
                                     {% else %}
@@ -48,8 +48,8 @@
                                     <input type="text" name="phone" required
                                            class="validate {% if error.phone %} {{ "invalid" }} {% endif %}"
                                            autocomplete="phone"
-                                           id="name" value="{% if phone %} {{ phone }} {% endif %}"/>
-                                    <label for="name">Phone</label>
+                                           id="phone" value="{% if phone %} {{ phone }} {% endif %}"/>
+                                    <label for="phone">Phone</label>
                                     {% if error.name %}
                                         <span class="helper-text" data-error="{{ error.phone }}"></span>
                                     {% else %}
@@ -59,15 +59,29 @@
                                 <p> Choose package: </p>
 
                                 <div class="row center" id="package-selection">
-                                    <div class="col s12 m6 package" id="package-1">
-                                        <h4>Package-1</h4>
+                                    <div class="col s12 m6 package" id="package-1" onclick="choosePackage(this.id)">
+                                        <span class="package-header">Package 1</span>
+                                        <p><b>Cost: Rs. 100(Student)</b></p><br/>
+                                        <p>Ethical Hacking Workshop</p>
+                                        <p> - Lunch</p>
+                                        <p> - Goodies</p>
+
+
+
                                     </div>
-                                    <div class="col s12 m6 package" id="package-2">
-                                        <h4>Package-2</h4>
+                                    <div class="col s12 m6 package" id="package-2" onclick="choosePackage(this.id)">
+                                        <span class="package-header">Package 1</span>
+                                        <p><b>Cost: Rs. 100(Student)</b></p><br/>
+                                        <p>Github Workshop</p>
+                                        <p> - Dazzle code</p>
+                                        <p> - Code Debugging</p>
+                                        <p> - Reverse search</p>
+                                        <p> - Tech Quiz</p>
+                                        <p> - Goodies</p>
                                     </div>
                                 </div>
 
-                                <input type="hidden" name="package" value="x" />
+                                <input type="hidden" name="package" id="package-value" />
                                 <br/>
 
                                 <br/>
@@ -91,6 +105,25 @@
 {% block script %}
     {{ parent() }}
     <script>
+
+        const checkForm = () => {
+            let val = document.getElementById('package-value').value;
+            if (val === '' || val === null || val === undefined) {
+                $('#gen-error').text("Must select a package.")
+                return false;
+            }
+            return true;
+        };
+        const choosePackage = (id) => {
+            console.log("Clicked on: ", id);
+            $("#"+id).addClass("selected");
+            let other = getOther(id);
+            $("#" + other).removeClass("selected");
+            $("input#package-value").val(id);
+        };
+        const getOther = (current) => {
+            return (current === 'package-1') ? 'package-2' : 'package-1';
+        }
 
     </script>
 {% endblock %}
