@@ -57,19 +57,20 @@
                                     {% endif %}
                                 </div>
                                 <p> Choose package: </p>
+                                <br>
 
                                 <div class="row center" id="package-selection">
-                                    <div class="col s12 m6 package" id="package-1" onclick="choosePackage(this.id)">
+                                    <div class="col s11 m5 package" id="package-1" onclick="choosePackage(this.id)">
                                         <span class="package-header">Package 1</span>
                                         <p><b>Cost: Rs. 100(Student)</b></p><br/>
                                         <p>Ethical Hacking Workshop</p>
                                         <p> - Lunch</p>
                                         <p> - Goodies</p>
 
+                                </div>
+                                    <div class="col s2 m2"> <br/><br/> </div>
 
-
-                                    </div>
-                                    <div class="col s12 m6 package" id="package-2" onclick="choosePackage(this.id)">
+                                    <div class="col s11 m5 package" id="package-2" onclick="choosePackage(this.id)">
                                         <span class="package-header">Package 2</span>
                                         <p><b>Cost: Rs. 100(Student)</b></p><br/>
                                         <p>Github Workshop</p>
@@ -140,6 +141,11 @@
                 doc.text(23, 152, "-Lunch");
                 doc.text(23, 162, "-Snacks");
                 doc.text(23, 172, "-Goodies");
+
+                doc.text(23, 192, "Prerequisites:");
+                doc.text(23, 202, " Laptop & Empty 4GB Pendrive");
+                doc.text(23, 222, "Please visit OSL & get Kali Linux");
+                doc.text(23, 232, "Installed by friday (20/9/19).");
             }
             if (elementIsClicked2 === true) {
                 doc.text(23, 122, "Package 2");
