@@ -44,8 +44,19 @@
                                     {% endif %}
                                 </div>
 
-
-
+                                <div class="input-field">
+                                    <input type="text" name="phone" required
+                                           class="validate {% if error.phone %} {{ "invalid" }} {% endif %}"
+                                           autocomplete="phone"
+                                           id="name" pattern="[a-zA-Z\s]+"/>
+                                    <label for="name">Phone</label>
+                                    {% if error.name %}
+                                        <span class="helper-text" data-error="{{ error.phone }}"></span>
+                                    {% else %}
+                                        <span class="helper-text" data-error="Invalid Phone Number"></span>
+                                    {% endif %}
+                                </div>
+                                <input type="hidden" name="package" value="" >
                                 <br/>
 
                                 <br/>
