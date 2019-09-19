@@ -18,6 +18,12 @@ $twig = new Environment($loader /*[
 try {
     $route = new Route();
 
+    $route->addMatch('GET', '/', function () {
+        global $twig;
+        $twig->display('osd-reg.twig');
+    });
+
+
     $route->addMatch('GET', '/osd/registration', function () {
         global $twig;
         $twig->display('osd-reg.twig');
