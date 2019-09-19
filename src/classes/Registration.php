@@ -1,10 +1,10 @@
 <?php
+require_once __DIR__ . "/../../vendor/autoload.php";
 
 use EasyMail\Mail;
 use PhpUseful\EasyHeaders;
 use PhpUseful\MySQLHelper;
 
-require_once __DIR__ . "/../../vendor/autoload.php";
 
 class Registration
 {
@@ -35,10 +35,9 @@ class Registration
      */
     public function __construct(string $name, string $email, string $phone, string $package)
     {
-        global $logger;
         try {
             $this->helper =
-                new MySQLHelper(DB_SERVER, DB_NAME, DB_PASSWORD, DB_USER);
+                new MySQLHelper(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
             $this->name = $name;
             $this->email = $email;
@@ -46,7 +45,8 @@ class Registration
             $this->package = $package;
 
         } catch (Exception $exception) {
-            $logger->critical('DATABASE ERROR: ' . $exception->getMessage());
+            error_log($exception->getMessage());
+            getLogger()->critical('DATABASE ERROR: ' . $exception->getMessage());
             EasyHeaders::service_unavailable();
         }
 
@@ -75,15 +75,14 @@ class Registration
 
     public function saveDetails()
     {
-        global $logger;
-        $fields = array(self::COL_NAME, self::COL_EMAIL, self::COL_PHONE, self::COL_TIMESTAMP);
+        $fields = array(self::COL_NAME, self::COL_EMAIL, self::COL_PHONE, self::COL_PACKAGE);
 
         try {
-            $this->helper->insert(self::TABLE_NAME, $fields, 'sss',
+            $this->helper->insert(self::TABLE_NAME, $fields, 'ssss',
                 $this->name, $this->email, $this->phone, $this->package);
             $this->sendConfirmationEmail();
         } catch (Exception $e) {
-            $logger->error('ERROR SAVING: ' . $e->getMessage());
+            getLogger()->error('ERROR SAVING: ' . $e->getMessage());
         }
     }
 

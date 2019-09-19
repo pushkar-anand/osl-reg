@@ -19,7 +19,9 @@
   },
   "autoload": {
     "files": [
-      "src/includes/define.php"
+      "src/includes/define.php",
+      "src/logger.php",
+      "src/classes/Registration.php"
     ]
   }
 }

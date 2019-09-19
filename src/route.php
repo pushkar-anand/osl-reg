@@ -7,11 +7,10 @@ use PhpUseful\Functions;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-global $logger;
 
 $loader = new FilesystemLoader(__DIR__ . '/../views');
 
-$twig = new Environment($loader, /*[
+$twig = new Environment($loader /*[
     'cache' => __DIR__ . '/../cache',
 ]*/);
 
@@ -46,7 +45,7 @@ try {
             $error["error"] = "Fill all the fields.";
         }
 
-        if (empty($error)) {
+        if (count($error) > 0) {
             echo $twig->render('osd-reg.twig', $error);
         } else {
             EasyHeaders::redirect('/osd/confirm');
@@ -60,6 +59,6 @@ try {
     $route->execute();
 
 } catch (Exception $e) {
-    $logger->critical('Error in routing ->' . $e->getMessage());
+    getLogger()->critical('Error in routing ->' . $e->getMessage());
     EasyHeaders::server_error();
 }
