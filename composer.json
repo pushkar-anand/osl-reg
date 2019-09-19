@@ -1,0 +1,25 @@
+{
+  "name": "pushkar/osl-reg",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Pushkar Anand",
+      "email": "anandpushkar088@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.3",
+    "ext-json": "*",
+    "ext-mysqli": "*",
+    "pushkar/easy-router": "^0.1.2",
+    "pushkar/php-useful": "^2.0",
+    "pushkar/easy-mail": "^1.5",
+    "monolog/monolog": "^2.0",
+    "twig/twig": "^2.11"
+  },
+  "autoload": {
+    "files": [
+      "src/includes/define.php"
+    ]
+  }
+}
