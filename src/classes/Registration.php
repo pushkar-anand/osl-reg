@@ -88,6 +88,8 @@ class Registration
 
     private function sendConfirmationEmail()
     {
+        getLogger()->debug('SENDING EMAIL;');
+
         $from = "confirmation@osl";
         $reply = 'no-reply@osl';
 
@@ -181,7 +183,7 @@ MAIL;
             $mail->sendMail();
 
         } catch (Exception $e) {
-
+            getLogger()->error('EXCEPTION: '.$e->getMessage());
         }
 
     }
