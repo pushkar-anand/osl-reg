@@ -22,7 +22,7 @@
                                     <input type="text" name="name" required
                                            class="validate {% if error.name %} {{ "invalid" }} {% endif %}"
                                            autocomplete="name"
-                                           id="name" pattern="[a-zA-Z\s]+"/>
+                                           id="name" pattern="[a-zA-Z\s]+" value="{% if name %} {{ name }} {% endif %}"/>
                                     <label for="name">Name</label>
                                     {% if error.name %}
                                         <span class="helper-text" data-error="{{ error.name }}"></span>
@@ -35,7 +35,7 @@
                                     <input type="email" name="email" required
                                            class="validate {% if error.email %} {{ "invalid" }} {% endif %}"
                                            autocomplete="email"
-                                           id="email"/>
+                                           id="email" value="{% if email %} {{ email }} {% endif %}"/>
                                     <label for="name">Email</label>
                                     {% if error.email %}
                                         <span class="helper-text" data-error="{{ error.email }}"></span>
@@ -48,7 +48,7 @@
                                     <input type="text" name="phone" required
                                            class="validate {% if error.phone %} {{ "invalid" }} {% endif %}"
                                            autocomplete="phone"
-                                           id="name" />
+                                           id="name" value="{% if phone %} {{ phone }} {% endif %}"/>
                                     <label for="name">Phone</label>
                                     {% if error.name %}
                                         <span class="helper-text" data-error="{{ error.phone }}"></span>

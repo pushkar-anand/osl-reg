@@ -25,6 +25,7 @@ try {
 
     $route->addMatch('POST', '/osd/registration', function () {
         global $twig;
+        $val = array();
         $error = array();
         if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['phone'])  && isset($_POST['package'])) {
 
@@ -32,6 +33,10 @@ try {
             $email = Functions::escapeInput($_POST['email']);
             $phone = Functions::escapeInput($_POST['phone']);
             $package = Functions::escapeInput($_POST['package']);
+
+            $val["name"] = $name;
+            $val["email"] = $email;
+            $val["phone"] = $phone;
 
 
             try {
@@ -45,9 +50,14 @@ try {
             $error["error"] = "Fill all the fields.";
         }
 
+        getLogger()->debug('DEBUG ERROR', $error);
+
         if (count($error) > 0) {
-            echo $twig->render('osd-reg.twig', $error);
+            getLogger()->debug('ERROR EXISTS.');
+            $val["error"] = $error;
+            echo $twig->render('osd-reg.twig', $val);
         } else {
+            getLogger()->debug('NO ERROR REDIRECTING');
             EasyHeaders::redirect('/osd/confirm');
         }
     });
