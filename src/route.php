@@ -75,11 +75,11 @@ try {
     });
 
     $route->addMatch('GET', '/osd/confirm/package1', function () {
-        EasyHeaders::redirect('');
+        EasyHeaders::redirect('https://osl224440.typeform.com/to/nA1mqF');
     });
 
     $route->addMatch('GET', '/osd/confirm/package2', function () {
-        EasyHeaders::redirect('');
+        EasyHeaders::redirect('https://osl224440.typeform.com/to/cCtdeK');
     });
 
     $route->execute();
