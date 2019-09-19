@@ -74,6 +74,7 @@ try {
         }
     });
 
+
     $route->addMatch('GET', '/osd/confirm/package1', function () {
         EasyHeaders::redirect('https://osl224440.typeform.com/to/nA1mqF');
     });

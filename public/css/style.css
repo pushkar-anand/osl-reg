@@ -8,7 +8,7 @@ body{
 .package {
     border: #000000 3px solid;
     border-radius: 5%;
-    height: 30vh !important;
+    height: 35vh !important;
     /*background-color: #000e34;*/
 
 }
@@ -42,4 +42,7 @@ body{
 .selected, .selected.collection.collection-item{
     background-color: #000e34 ;
     color: #ffffff;
+}
+.package-header{
+
 }
