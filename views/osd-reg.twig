@@ -159,7 +159,7 @@
                 doc.text(23, 222, "Please visit OSL & get Kali Linux");
                 doc.text(23, 232, "Installed by friday (20/09/2019).");
             }
-            if (elementIsClicked2 === true) {
+            else if (elementIsClicked2 === true) {
                 doc.text(23, 122, "Package 2");
                 doc.text(23, 142, "-GitHub Workshop");
                 doc.text(23, 152, "-Dazzle Code");
@@ -194,8 +194,10 @@
             $("input#package-value").val(id);
             if (id === 'package-1') {
                 elementIsClicked1 = true;
+                elementIsClicked2 = false;
             } else {
                 elementIsClicked2 = true;
+                elementIsClicked1 = false;
             }
         };
         const getOther = (current) => {
