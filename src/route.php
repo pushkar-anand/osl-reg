@@ -34,6 +34,9 @@ try {
         }
     });
 
+    $route->execute();
+
 } catch (Exception $e) {
     $logger->critical('Error in routing ->' . $e->getMessage());
+    EasyHeaders::server_error();
 }
