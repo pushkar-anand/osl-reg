@@ -8,7 +8,7 @@ body{
 .package {
     border: #000000 3px solid;
     border-radius: 5%;
-    height: 35vh !important;
+    /*height: 35vh !important;*/
     /*background-color: #000e34;*/
 
 }
@@ -48,3 +48,22 @@ body{
     padding: 5px;
 }
 
+#package-selection{
+    margin-left: 5%;
+}
+
+.package-header{
+    font-size: 20px;
+
+}
+
+.pack-body{
+    font-size: 17px;
+}
+
+.reg{
+    background-color: #000e34;
+}
+.reg:hover{
+    background-color: #000a1c;
+}

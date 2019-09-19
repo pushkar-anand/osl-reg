@@ -62,17 +62,27 @@
                                 <div class="row center" id="package-selection">
                                     <div class="col s11 m5 package" id="package-1" onclick="choosePackage(this.id)">
                                         <span class="package-header">Package 1</span>
-                                        <p><b>Cost: Rs. 100(Student)</b></p><br/>
-                                        <p>Ethical Hacking Workshop</p>
-                                        <p> - Lunch</p>
-                                        <p> - Goodies</p>
+                                        <hr>
+                                        <br>
+                                        <p style="font-size: 19px;"><b>Cost: Rs. 100 (Student)</b></p><br/>
+                                        <div class="pack-body">
+                                            <p>Ethical Hacking Workshop</p>
+                                            <p> - Lunch</p>
+                                            <p> - Goodies</p>
+                                        </div>
+
+                                        <br>
 
                                 </div>
                                     <div class="col s2 m2"> <br/><br/> </div>
 
                                     <div class="col s11 m5 package" id="package-2" onclick="choosePackage(this.id)">
                                         <span class="package-header">Package 2</span>
-                                        <p><b>Cost: Rs. 100(Student)</b></p><br/>
+                                        <hr>
+                                        <br>
+                                        <p style="font-size: 19px;"><b>Cost: Rs. 100(Student)</b></p><br/>
+
+                                        <div class="pack-body">
                                         <p>Github Workshop</p>
                                         <p> - Lunch</p>
                                         <p> - Dazzle code</p>
@@ -80,6 +90,8 @@
                                         <p> - Reverse search</p>
                                         <p> - Tech Quiz</p>
                                         <p> - Goodies</p>
+                                        </div>
+                                        <br>
                                     </div>
                                 </div>
 
@@ -87,8 +99,8 @@
                                 <br/>
 
                                 <br/>
-                                <div class="right-align">
-                                    <button class="btn waves-effect waves-light" type="button" id="custom-submit" name="action">Register
+                                <div class="center">
+                                    <button class="btn waves-effect waves-light reg" type="button" id="custom-submit" name="action">Register
                                         {#<i class="material-icons right">send</i>#}
                                     </button>
                                 </div>
@@ -169,7 +181,7 @@
         const checkForm = () => {
             let val = document.getElementById('package-value').value;
             if (val === '' || val === null || val === undefined) {
-                $('#gen-error').text("Must select a package.")
+                $('#gen-error').text("Must select a package.");
                 return false;
             }
             return true;
